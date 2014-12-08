@@ -1,0 +1,6 @@
+- name: testing repo
+  apt_repository: repo='deb http://mirror.yandex.ru/debian/ testing main contrib non-free' state=present
+- name: updates a server
+  apt: update_cache=yes
+- name: upgrade
+  apt: upgrade=full
