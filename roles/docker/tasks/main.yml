@@ -1,0 +1,4 @@
+- name: install docker
+  apt: pkg={{ item }}
+  with_items:
+    - docker.io

@@ -2,3 +2,4 @@
   roles:
       - presoft
       - commonsoft
+      - docker
