@@ -1,2 +1,7 @@
 - name: install vim
-  apt: pkg=vim
+  apt: pkg={{ item }}
+  with_items:
+    - vim
+    - perltidy
+    - curl
+    - exuberant-ctags
