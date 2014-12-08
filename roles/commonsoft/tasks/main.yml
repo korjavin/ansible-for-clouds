@@ -1,0 +1,10 @@
+- name: install commonsoft
+  apt: pkg={{ item }}
+  with_items:
+    - iftop
+    - tcpdump
+    - wget
+    - curl
+    - monit
+    - dos2unix
+    - nmap
