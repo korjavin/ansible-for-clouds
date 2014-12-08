@@ -4,3 +4,6 @@
   apt: update_cache=yes
 - name: upgrade
   apt: upgrade=full
+- name: install locales
+  apt: pkg=locales
+- locale_gen: name=ru_RU.UTF-8 state=present
