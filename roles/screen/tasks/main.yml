@@ -1,0 +1,5 @@
+- name: screen config
+  copy: src="screenrc" dest="/root/.screenrc"
+
+- name: install screen
+  apt: pkg=screen
