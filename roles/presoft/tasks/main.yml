@@ -2,3 +2,4 @@
   apt: pkg={{ item }}
   with_items:
     - curl
+    - tcpdump

@@ -2,4 +2,5 @@
   roles:
       - simplejson
       - debtesting
+      - presoft
       - screen

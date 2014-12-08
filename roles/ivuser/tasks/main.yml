@@ -1,0 +1,19 @@
+- name: Add User Iv
+  user: name='iv' shell='/usr/bin/zsh'
+
+- name: Ivan key
+  authorized_key: user=iv
+                  key="{{ lookup('file', '/home/iv/.ssh/id_dsa.pub') }}"
+
+- name: ohmyzsh repo
+  git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh
+
+- name: zsh config
+  copy: src="zshrc" dest="/home/iv/.zshrc"
+
+- name: zsh config1
+  copy: src="zshenv" dest="/home/iv/.zshenv"
+
+- name: sudoers
+  lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
+
