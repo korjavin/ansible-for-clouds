@@ -1,5 +1,7 @@
+- group: name=iv state=present
+
 - name: Add User Iv
-  user: name='iv' shell='/usr/bin/zsh'
+  user: name='iv' shell='/usr/bin/zsh' groups='iv'
 
 - name: Ivan key
   authorized_key: user=iv
@@ -17,3 +19,14 @@
 - name: sudoers
   lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
 
+- name: vimrepo
+  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim
+
+- name: vim conf
+  copy: src="vimrc" dest="/home/iv/.vimrc"
+
+- name:  iv tmp dir
+  action: file path=/home/iv/tmp group=iv owner=iv mode=700 state=directory
+
+- name:  iv bin dir
+  action: file path=/home/iv/bin group=iv owner=iv mode=700 state=directory
