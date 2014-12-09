@@ -8,3 +8,5 @@
     - monit
     - dos2unix
     - nmap
+  environment:
+    PATH: /usr/sbin:/sbin/:{{ ansible_env.PATH }}
