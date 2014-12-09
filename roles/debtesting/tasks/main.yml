@@ -11,6 +11,12 @@
 - name: upgrade second try
   apt: upgrade=full
   ignore_errors: yes
+- name: install -f second try
+  command: apt-get -y install -f
+  ignore_errors: yes
+- name: upgrade third try
+  apt: upgrade=full
+  ignore_errors: yes
 - name: install locales
   apt: pkg=locales
 - locale_gen: name=ru_RU.UTF-8 state=present
