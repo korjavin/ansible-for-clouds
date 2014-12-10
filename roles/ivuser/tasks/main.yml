@@ -1,7 +1,7 @@
 - group: name=iv state=present
 
 - name: Add User Iv
-  user: name='iv' shell='/usr/bin/zsh' groups='iv'
+  user: name='iv' shell='/usr/bin/zsh' group='iv'
 
 - name: Ivan key
   authorized_key: user=iv
