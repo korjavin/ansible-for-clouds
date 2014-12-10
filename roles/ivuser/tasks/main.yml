@@ -8,25 +8,31 @@
                   key="{{ lookup('file', '/home/iv/.ssh/id_dsa.pub') }}"
 
 - name: ohmyzsh repo
-  git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh
+  git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1
+
+- name: ohmyzsh repo right
+  action: file path=/home/iv/.oh-my-zsh group=iv owner=iv state=directory recurse=yes
 
 - name: zsh config
-  copy: src="zshrc" dest="/home/iv/.zshrc"
+  copy: src="zshrc" dest="/home/iv/.zshrc" owner=iv group=iv mode=0644
 
 - name: zsh config1
-  copy: src="zshenv" dest="/home/iv/.zshenv"
+  copy: src="zshenv" dest="/home/iv/.zshenv" owner=iv group=iv mode=0644
 
 - name: sudoers
   lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
 
 - name: vimrepo
-  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim
+  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim depth=1
+
+- name: vimrepo right
+  action: file path=/home/iv/.vim group=iv owner=iv state=directory recurse=yes
 
 - name: vim conf
-  copy: src="vimrc" dest="/home/iv/.vimrc"
+  copy: src="vimrc" dest="/home/iv/.vimrc" owner=iv group=iv mode=0644
 
 - name:  iv tmp dir
   action: file path=/home/iv/tmp group=iv owner=iv mode=700 state=directory
 
 - name:  iv bin dir
-  action: file path=/home/iv/bin group=iv owner=iv mode=700 state=directory
+  action: file path=/home/iv/bin group=iv owner=iv mode=700 state=directory recurse=yes
