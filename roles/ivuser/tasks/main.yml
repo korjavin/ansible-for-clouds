@@ -1,7 +1,8 @@
 - group: name=iv state=present
 
 - name: Add User Iv
-  user: name='iv' shell='/usr/bin/zsh' group='iv'
+# python -c 'import crypt; print crypt.crypt("This is my Password", "$1$SomeSalt$")'
+  user: name='iv' shell='/usr/bin/zsh' group='iv' password: $1$SomeSalt$.97jlnH5r3aQGJO4F.UNS1
 
 - name: Ivan key
   authorized_key: user=iv
