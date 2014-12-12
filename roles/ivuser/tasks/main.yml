@@ -6,6 +6,7 @@
 - name: Ivan key
   authorized_key: user=iv
                   key="{{ lookup('file', '/home/iv/.ssh/id_dsa.pub') }}"
+  ignore_errors: yes
 
 - name: ohmyzsh repo
   git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1
