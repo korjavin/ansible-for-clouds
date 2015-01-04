@@ -1,2 +1,10 @@
 - name: install sudo
   apt: pkg=sudo
+
+- name: Copy sudoers file for safety
+  command: cp -f /etc/sudoers /etc/sudoers.tmp
+- name: sudo env_keep
+  lineinfile: dest=/etc/sudoers.tmp state=present regexp='^Defaults env_keep\+\= "HOME EDITOR"' line='Defaults env_keep+="HOME EDITOR"'
+
+- name: Final sudoers file check
+  shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
