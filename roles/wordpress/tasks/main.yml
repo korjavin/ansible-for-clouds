@@ -1,0 +1,24 @@
+- name: python docker
+  apt: pkg=python-docker
+
+- name: ensure mysql container is running
+  docker:
+    image=korjavin/docker-mysql-stdport
+    name=mysql
+    memory_limit=256MB
+    state=running
+
+- name: file for wordpress
+  copy: src="uploads.ini" dest="/etc/uploads.ini"
+
+- name: ensure wordpress
+  docker:
+    image=library/wordpress
+    name=wordpress
+    memory_limit=256MB
+    state=running
+    volumes=/etc/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    links=mysql:mysql
+    env="WORDPRESS_DB_USER=root,WORDPRESS_DB_NAME=wordpress1,WORDPRESS_DB_PASSWORD="
+
+
