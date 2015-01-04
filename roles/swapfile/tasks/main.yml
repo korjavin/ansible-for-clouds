@@ -1,0 +1,22 @@
+- name: Check swapfile existence
+  stat: path=/swapfile1
+  register: swapfile1
+
+- name: create file
+  command: dd if=/dev/zero of=/swapfile1 bs=1024 count=524288
+  when: not swapfile1.stat.exists
+
+- name: chmod
+  command: chmod 0600 /swapfile1
+  when: not swapfile1.stat.exists
+
+- name: mkswap
+  command: mkswap /swapfile1
+  when: not swapfile1.stat.exists
+
+- name: swapon
+  command: swapon /swapfile1
+  when: not swapfile1.stat.exists
+
+- name: line in fstab
+  lineinfile: dest=/etc/fstab state=present line='/swapfile1 none swap sw 0 0'
