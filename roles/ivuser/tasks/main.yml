@@ -42,3 +42,6 @@
 
 - name:  iv bin dir
   action: file path=/home/iv/bin group=iv owner=iv mode=700 state=directory recurse=yes
+
+- name: git config
+  copy: src="gitconfig" dest="/home/iv/.gitconfig"
