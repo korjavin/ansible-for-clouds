@@ -45,3 +45,6 @@
 
 - name: git config
   copy: src="gitconfig" dest="/home/iv/.gitconfig"
+
+- name: screen config
+  copy: src="screenrc" dest="/home/iv/.screenrc"
