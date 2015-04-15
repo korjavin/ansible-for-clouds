@@ -1,3 +1,12 @@
+- name: forced clear apt lists
+  command:  /bin/sh -c 'rm -rf /var/lib/apt/lists/*'
+
+- name: experimental repo
+  apt_repository: repo='deb http://mirror.yandex.ru/debian/ experimental main' state=present
+
+- name: update repo
+  apt: update_cache=yes
+
 - name: install docker
   apt: pkg={{ item }}
   with_items:
