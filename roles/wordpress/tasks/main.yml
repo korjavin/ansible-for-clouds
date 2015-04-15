@@ -1,13 +1,3 @@
-- name: python docker
-  apt: pkg=python-docker
-
-- name: ensure mysql container is running
-  docker:
-    image=korjavin/docker-mysql-stdport
-    name=mysql
-    memory_limit=256MB
-    state=running
-
 - name: file for wordpress
   copy: src="uploads.ini" dest="/etc/uploads.ini"
 

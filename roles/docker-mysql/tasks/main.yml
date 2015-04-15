@@ -1,0 +1,7 @@
+- name: ensure mysql container is running
+  docker:
+    image=korjavin/docker-mysql-stdport
+    name=mysql
+    memory_limit=256MB
+    state=running
+
