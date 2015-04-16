@@ -1,8 +1,12 @@
-- mysql_user:
-      name=bob
-      password=12345
-      priv=*.*:ALL,GRANT
+- mysql_db:
+      name=db1
       state=present
-      login_user=root
       login_host=127.0.0.1
-      login_password=
+
+- mysql_user:
+      name=user12
+      host=%
+      password=12345aa
+      priv=db1.*:ALL,GRANT
+      state=present
+      login_host=127.0.0.1
