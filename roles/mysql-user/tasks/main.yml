@@ -1,0 +1,8 @@
+- mysql_user:
+      name=bob
+      password=12345
+      priv=*.*:ALL,GRANT
+      state=present
+      login_user=root
+      login_host=127.0.0.1
+      login_password=
