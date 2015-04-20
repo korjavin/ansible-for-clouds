@@ -2,11 +2,12 @@
       name=db1
       state=present
       login_host=127.0.0.1
+      encoding=utf8
 
 - mysql_user:
       name=user12
       host=%
       password=12345aa
-      priv=db1.*:ALL,GRANT
+      priv=db1.*:ALL,GRANT/*.*:FILE
       state=present
       login_host=127.0.0.1
