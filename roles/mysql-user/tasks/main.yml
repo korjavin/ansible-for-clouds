@@ -4,6 +4,17 @@
       login_host=127.0.0.1
       encoding=utf8
 
+- copy: src=db1.sql.bz2 dest=/tmp
+
+- mysql_db:
+      name=db1
+      state=import
+      target=/tmp/db1.sql.bz2
+      login_host=127.0.0.1
+
+- file: path=/tmp/db1.sql.bz2 state=absent
+
+
 - mysql_user:
       name=user12
       host=%
