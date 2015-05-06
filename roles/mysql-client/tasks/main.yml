@@ -1,0 +1,4 @@
+- name: install mysql client
+  apt: pkg={{ item }}
+  with_items:
+    - mysql-client
