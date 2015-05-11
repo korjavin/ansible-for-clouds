@@ -1,4 +1,5 @@
 dependencies:
+      - { role: apt-lists}
       - { role: zsh }
       - { role: sudo }
       - { role: vim }

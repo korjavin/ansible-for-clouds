@@ -1,0 +1,11 @@
+- name: forced clear apt lists
+  command:  /bin/sh -c 'rm -rf /var/lib/apt/lists/*'
+
+- name: testing repo
+  apt_repository: repo='deb http://mirror.yandex.ru/debian/ testing main contrib non-free' state=present
+
+- name: experimental repo
+  apt_repository: repo='deb http://mirror.yandex.ru/debian/ experimental main' state=present
+
+- name: update repo
+  apt: update_cache=yes
