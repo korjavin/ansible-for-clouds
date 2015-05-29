@@ -15,7 +15,7 @@
   ignore_errors: yes
 
 - name: ohmyzsh repo
-  git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1
+  git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1 version=master
   sudo: yes
   sudo_user: iv
 
@@ -32,7 +32,7 @@
   lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
 
 - name: vimrepo
-  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim depth=1
+  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim depth=1 version=master
   sudo: yes
   sudo_user: iv
 

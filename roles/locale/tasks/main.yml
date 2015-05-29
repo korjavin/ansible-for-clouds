@@ -1,0 +1,5 @@
+- name: install locales
+  apt: pkg=locales
+- locale_gen: name=ru_RU.UTF-8 state=present
+- name: clean
+  command: apt-get -y autoclean

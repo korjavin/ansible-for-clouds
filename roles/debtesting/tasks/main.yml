@@ -13,8 +13,3 @@
 - name: upgrade third try
   apt: upgrade=full
   ignore_errors: yes
-- name: install locales
-  apt: pkg=locales
-- locale_gen: name=ru_RU.UTF-8 state=present
-- name: clean
-  command: apt-get -y autoclean
