@@ -3,3 +3,4 @@ dependencies:
       - { role: sudo }
       - { role: vim }
       - { role: locale}
+      - { role: screen}

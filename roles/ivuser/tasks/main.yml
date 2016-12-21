@@ -31,8 +31,11 @@
 - name: sudoers
   lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
 
+- name: ssh-keyscan the git server #https://github.com/ansible/ansible/issues/7474
+  shell: ssh-keyscan -H -t dsa github.com >> ~/.ssh/known_hosts 2>&1
+
 - name: vimrepo
-  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim depth=1 version=master
+  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim depth=1 version=master accept_hostkey=yes
   sudo: yes
   sudo_user: iv
 
