@@ -1,0 +1,26 @@
+- shell: 'date +%Y%m%d%H%M%S'
+  register: current_run_timestamp
+
+- file:
+    path: /home/iv/madrookbackup
+    state: directory
+    mode: 0755
+
+- name: mysql dump inside docker
+  command: sh -c 'docker exec mysql mysqldump wordpress > /home/iv/madrookbackup/wordpress.sql'
+
+- name: copy files
+  command: sh -c 'docker cp tlee:/var/www/html /home/iv/madrookbackup'
+
+- name: tar
+  command: sh -c 'tar cf /home/iv/madrook.tar /home/iv/madrookbackup'
+
+- synchronize: src=/home/iv/madrook.tar  dest=/home/iv/tmp/madrook/madrook_{{current_run_timestamp.stdout }}.tar  mode=pull
+
+- file:
+    path: /home/iv/madrookbackup
+    state: absent
+
+- file:
+    path: /home/iv/madrook.tar
+    state: absent
