@@ -1,5 +1,10 @@
 - hosts: all
+  gather_facts: False
+  become_user: root
+  become_method: sudo
   roles:
       - simplejson
-      - debtesting
+      - git
+      - locale
       - screen
+        #      - screen
