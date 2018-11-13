@@ -1,2 +1,8 @@
 - name: install zsh
   apt: pkg=zsh
+  when: ansible_os_family == "Debian"
+
+- name: install zsh
+  pkgng: pkg=zsh
+  when: ansible_os_family != "Debian"
+  become: true

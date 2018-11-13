@@ -1,7 +1,11 @@
 - name: ohmyzsh repo
-  git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1 version=master
-  sudo: yes
-  sudo_user: iv
+  synchronize:
+    src: /home/iv/.oh-my-zsh/
+    dest: /home/iv/.oh-my-zsh
+    recursive: yes
+
+    #- name: ohmyzsh repo
+    #git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1 version=master
 
 - name: ohmyzsh repo right
   action: file path=/home/iv/.oh-my-zsh group=iv owner=iv state=directory recurse=yes
@@ -12,7 +16,7 @@
 - name: zsh config1
   copy: src="zshenv" dest="/home/iv/.zshenv" owner=iv group=iv mode=0644
 
-- name: histor right
+- name: history permissions
   action: file path=/home/iv/.zsh_history group=iv owner=iv state=touch
 
 - name: ssh-keyscan the git server #https://github.com/ansible/ansible/issues/7474
@@ -38,8 +42,13 @@
   copy: src="vimrc" dest="/home/iv/.vimrc" owner=iv group=iv mode=0644
 
 - name: vimrepo
-  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim version=master accept_hostkey=yes force=yes recursive=yes
-  ignore_errors: yes
+  synchronize:
+    src: /home/iv/.vim/
+    dest: /home/iv/.vim
+    recursive: yes
+  #- name: vimrepo
+  #  git: repo=https://github.com/korjavin/vimfiles.git dest=/home/iv/.vim version=master accept_hostkey=yes force=yes recursive=yes
+  #  ignore_errors: yes
 
 - name: vimrepo right
   action: file path=/home/iv/.vim group=iv owner=iv state=directory recurse=yes

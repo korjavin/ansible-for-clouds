@@ -10,6 +10,9 @@
       login_host=127.0.0.1
       encoding=utf8
 
+- name: download locally
+  local_action: get_url http://localhost:8081/service/local/artifact/maven/redirect?r=sql&g=db&a=db1&p=bz2&v=LATEST
+
 - copy: src=db1.sql.bz2 dest=/tmp
 
 - mysql_db:

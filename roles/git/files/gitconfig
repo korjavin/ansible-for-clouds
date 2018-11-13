@@ -8,7 +8,7 @@
 	wmstate = normal
 	geometry = 1278x467+0+521 430 192
 [user]
-	name = Korjavin Ivan
+	name = Korjavin Ivan\n
 	email = korjavin@gmail.com
 [alias]
     df=diff --no-ext-diff -w

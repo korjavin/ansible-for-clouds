@@ -1,5 +1,12 @@
 - name: install git
   apt: pkg=git
+  when: ansible_os_family == "Debian"
+
+- name: install git
+  pkgng: pkg=git
+  when: ansible_os_family != "Debian"
+  become: true
+
 
 # - name: git config
 #   copy: src="gitconfig" dest="/root/.gitconfig"

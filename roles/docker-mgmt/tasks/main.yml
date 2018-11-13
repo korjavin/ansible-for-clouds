@@ -1,3 +1,11 @@
 - name: python docker
   apt: pkg=python-docker
+  when: ansible_os_family == 'Debian'
+  ignore_errors: yes
+
+- name: pip
+  apt: pkg=python-pip
+
+- pip: name=docker-py
+  ignore_errors: yes
 

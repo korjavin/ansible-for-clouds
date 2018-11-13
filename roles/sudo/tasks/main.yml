@@ -1,10 +1,29 @@
 - name: install sudo
   apt: pkg=sudo
+  when: ansible_os_family == "Debian"
+
+- name: install sudo
+  pkgng: pkg=git
+  when: ansible_os_family != "Debian"
+  become: true
+
+- name: set path
+  set_fact:
+    spath: '/etc/sudoers'
+  when: ansible_os_family == "Debian"
+
+- name: set path
+  set_fact:
+    spath: '/usr/local/etc/sudoers'
+  when: ansible_os_family != "Debian"
 
 - name: Copy sudoers file for safety
-  command: cp -f /etc/sudoers /etc/sudoers.tmp
+  command: cp -f {{spath}} /etc/sudoers.tmp
+  become: true
 - name: sudo env_keep
   lineinfile: dest=/etc/sudoers.tmp state=present regexp='^Defaults env_keep\+\= "HOME EDITOR"' line='Defaults env_keep+="HOME EDITOR"'
+  become: true
 
 - name: Final sudoers file check
-  shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+  shell: visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp {{spath}}
+  become: true

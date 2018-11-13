@@ -3,3 +3,9 @@
 #
 - name: install screen
   apt: pkg=screen
+  when: ansible_os_family == "Debian"
+
+- name: install screen
+  pkgng: pkg=screen
+  when: ansible_os_family != "Debian"
+  become: true

@@ -3,6 +3,8 @@
   #- name: Add User Iv
 # python -c 'import crypt; print crypt.crypt("This is my Password", "$1$SomeSalt$")'
 - user: name='iv' shell='/usr/bin/zsh' group='iv' #password='$1$SomeSalt$.97jlnH5r3aQGJO4F.UNS1'
+  become: true
+
 
 - name: Ivan key
   authorized_key: user=iv
@@ -28,8 +30,8 @@
 - name: zsh config1
   copy: src="zshenv" dest="/home/iv/.zshenv" owner=iv group=iv mode=0644
 
-- name: sudoers
-  lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
+  #- name: sudoers
+  #  lineinfile: 'dest="/etc/sudoers" line="iv ALL=(ALL) NOPASSWD: ALL"'
 
 - name: ssh-keyscan the git server #https://github.com/ansible/ansible/issues/7474
   shell: ssh-keyscan -H -t dsa github.com >> ~/.ssh/known_hosts 2>&1

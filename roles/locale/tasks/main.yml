@@ -1,5 +1,7 @@
 - name: install locales
   apt: pkg=locales
+  when: ansible_os_family == "Debian"
+
 - locale_gen: name=ru_RU.UTF-8 state=present
-# - name: clean
-#   command: apt-get -y autoclean
+  when: ansible_os_family == "Debian"
+

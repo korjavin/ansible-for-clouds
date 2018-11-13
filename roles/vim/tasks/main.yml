@@ -6,3 +6,9 @@
     - perltidy
     - curl
     - exuberant-ctags
+  when: ansible_os_family == "Debian"
+
+- name: install sudo
+  pkgng: pkg=vim
+  when: ansible_os_family != "Debian"
+  become: true
