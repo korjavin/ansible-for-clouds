@@ -1,0 +1,16 @@
+- name: mysqldump to host
+  shell: echo wordpress | docker exec -i wp_db_1 mysqldump -u wordpress -p wordpress > dumps/db-`date +%Y.%m.%d`.bak
+
+- name: copy files
+  shell: docker cp wp_wordpress_1:/var/www/html dumps/`date +%Y.%m.%d`
+
+- name: move sql
+  shell: mv dumps/db-`date +%Y.%m.%d`.bak dumps/`date +%Y.%m.%d`/
+
+- name: tar files
+  shell: tar cjf dumps/`date +%Y.%m.%d`.tbz dumps/`date +%Y.%m.%d` && rm -rf dumps/`date +%Y.%m.%d`
+
+- synchronize:
+    mode: pull
+    src: /home/iv/dumps/
+    dest: /media/space/dumps/
