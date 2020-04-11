@@ -16,8 +16,8 @@
 
 - name: ohmyzsh repo
   git: repo=https://github.com/korjavin/oh-my-zsh.git dest=/home/iv/.oh-my-zsh depth=1 version=master
-  sudo: yes
-  sudo_user: iv
+  become: yes
+  become_user: iv
 
 - name: ohmyzsh repo right
   action: file path=/home/iv/.oh-my-zsh group=iv owner=iv state=directory recurse=yes

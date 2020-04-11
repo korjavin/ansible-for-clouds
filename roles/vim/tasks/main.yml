@@ -1,8 +1,4 @@
 - name: install vim
-  apt: pkg={{ item }}
-  with_items:
-    - vim
-    - vim-ultisnips
-    - perltidy
-    - curl
-    - exuberant-ctags
+  apt:
+    pkg: [vim,  perltidy, curl, exuberant-ctags]
+    #vim-ultisnips,
